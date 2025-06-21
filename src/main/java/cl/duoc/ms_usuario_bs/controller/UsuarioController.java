@@ -16,18 +16,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
 @RestController
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("/usuarios")
+    @GetMapping("")
     public List<UsuarioDTO> selectAllUsuario() {
         return usuarioService.selectAllUsuario();
+    }
+
+    // Buscar por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
+        UsuarioDTO usuario = usuarioService.getUsuarioById(id);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // Crea
