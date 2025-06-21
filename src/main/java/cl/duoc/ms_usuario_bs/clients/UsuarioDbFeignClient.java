@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import cl.duoc.ms_usuario_bs.model.dto.UsuarioDTO;
 
-@FeignClient(name = "ms-usuario-db", url = "http://localhost:8081")
+@FeignClient(name = "ms-usuario-db", url = "http://localhost:8081/usuarios")
 public interface UsuarioDbFeignClient {
 
-    @GetMapping("usuarios")
+    @GetMapping("")
     public List<UsuarioDTO> selectAllUsuario();
 
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/{id}")
     UsuarioDTO getUsuarioById(@PathVariable("id") Long id);
 
-    @PostMapping("/usuarios")
+    @PostMapping("")
     UsuarioDTO createUsuario(@RequestBody UsuarioDTO usuarioDTO);
 
-    @PutMapping("/usuarios/{id}")
+    @PutMapping("/{id}")
     UsuarioDTO updateUsuario(@PathVariable("id") Long id, @RequestBody UsuarioDTO usuarioDTO);
 
-    @DeleteMapping("/usuarios/{id}")
+    @DeleteMapping("/{id}")
     String deleteUsuario(@PathVariable("id") Long id);
 
 }
