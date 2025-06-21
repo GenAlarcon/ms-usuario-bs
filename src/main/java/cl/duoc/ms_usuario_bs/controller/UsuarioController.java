@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
 @RestController
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -30,6 +32,13 @@ public class UsuarioController {
         return usuarioService.selectAllUsuario();
     }
 
+        // Busca 
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable("id") Long id) {
+        UsuarioDTO usuario = usuarioService.getUsuarioById(id);
+        return (usuario != null) ? new ResponseEntity<>(usuario, HttpStatus.OK)
+                                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
     // Crea
     @PostMapping
     public ResponseEntity<UsuarioDTO> createUsuario(@RequestBody UsuarioDTO usuarioDTO) {

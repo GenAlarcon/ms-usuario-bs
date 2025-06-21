@@ -1,5 +1,6 @@
 package cl.duoc.ms_usuario_bs.model.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,5 @@ public class UsuarioDTO {
     private String correo;
     private String celular;
     private String direccion;
+
 }

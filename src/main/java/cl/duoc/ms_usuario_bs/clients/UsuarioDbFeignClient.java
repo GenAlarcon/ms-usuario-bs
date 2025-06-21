@@ -15,7 +15,7 @@ import cl.duoc.ms_usuario_bs.model.dto.UsuarioDTO;
 @FeignClient(name = "ms-usuario-db", url = "http://localhost:8081")
 public interface UsuarioDbFeignClient {
 
-    @GetMapping("usuarios")
+    @GetMapping("/usuarios")
     public List<UsuarioDTO> selectAllUsuario();
 
     @GetMapping("/usuarios/{id}")
