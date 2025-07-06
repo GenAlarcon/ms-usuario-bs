@@ -69,6 +69,7 @@ public class UsuarioController {
             return new ResponseEntity<>(responseMessage, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
 
 
