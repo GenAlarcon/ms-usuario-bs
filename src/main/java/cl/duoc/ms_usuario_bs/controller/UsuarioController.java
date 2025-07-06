@@ -21,17 +21,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("/api/usuarios")
+=======
+@RequestMapping("/usuarios")
+>>>>>>> b4bf8b75e24038b114fcfb79e7c4a1ec7aea6092
 public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("/usuarios")
+    @GetMapping("")
     public List<UsuarioDTO> selectAllUsuario() {
         return usuarioService.selectAllUsuario();
     }
 
+<<<<<<< HEAD
         // Busca 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> findUsuarioById(@PathVariable("id") Long id) {
@@ -39,6 +44,19 @@ public class UsuarioController {
         return (usuario != null) ? new ResponseEntity<>(usuario, HttpStatus.OK)
                                  : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+=======
+    // Buscar por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
+        UsuarioDTO usuario = usuarioService.getUsuarioById(id);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+>>>>>>> b4bf8b75e24038b114fcfb79e7c4a1ec7aea6092
     // Crea
     @PostMapping
     public ResponseEntity<UsuarioDTO> createUsuario(@RequestBody UsuarioDTO usuarioDTO) {
